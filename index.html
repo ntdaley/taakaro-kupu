@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html lang="mi-NZ" manifest="kupu.appcache">
+<html lang="mi-NZ"
+      manifest="kupu.appcache"
+>
 <head>
   <title>T&#x0101;karo-Kupu</title>
+  <link href="./material-design-icons/material-icons.css"
+        rel="stylesheet"
+  />
+  <link href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css"
+        rel="stylesheet"
+  />
   <style>
   .grid {
     style=width:30em;
@@ -68,10 +76,16 @@
     </div>
     <hr/>
     <div ng-if="!ctrl.isPaused"> Kupu: {{ctrl.selectedWordText()}} </div>
-    <button ng-click="ctrl.consumeWord()"
+    <!-- <button ng-click="ctrl.consumeWord()"
             ng-disabled="ctrl.selectedWordText() === '' "
              ng-if="!ctrl.isPaused"
-    >Kitea t&#275;tahi</button>
+    >Kitea t&#275;tahi</button> -->
+    <md-button ng-click="ctrl.consumeWord()"
+               ng-disabled="ctrl.selectedWordText() === '' "
+               ng-if="!ctrl.isPaused"
+               class="md-raised md-primary"
+    >Kitea t&#275;tahi</md-button>
+
     <div>
       <a ng-if="ctrl.messageLink" ng-href="{{ctrl.messageLink}}" target="dictionary">{{ctrl.message}}</a>
       <span ng-if="!ctrl.messageLink">{{ctrl.message}}</span>
@@ -81,13 +95,23 @@
     <div>Kaute teitei: {{ctrl.highScore}}</div>
     <div>W&#257; e toe ana: {{ctrl.timeRemaining | time}}</div>
     <div>Wh&#257;inga muri: {{ctrl.nextMoreTimeScore}}</div>
-    <button ng-click="ctrl.isPaused = true"
+
+    <md-button ng-click="ctrl.isPaused = true"
+               ng-disabled="ctrl.timeRemaining <= 0"
+               ng-if="!ctrl.isPaused"
+               aria-label="Okioki"
+               class="md-fab"><md-icon>pause</md-icon></md-button>
+    <!-- <button ng-click="ctrl.isPaused = true"
             ng-disabled="ctrl.timeRemaining <= 0"
             ng-if="!ctrl.isPaused"
-    >Okioki</button>
-    <button ng-click="ctrl.isPaused = false"
+    >Okioki</button> -->
+    <md-button ng-click="ctrl.isPaused = false"
+               ng-if="ctrl.isPaused"
+               aria-label="Perei"
+               class="md-fab"><md-icon>play_arrow</md-icon></md-button>
+    <!-- <button ng-click="ctrl.isPaused = false"
             ng-if="ctrl.isPaused"
-    >Perei</button>
+    >Perei</button> -->
     <div ng-if="(ctrl.isPaused || ctrl.timeRemaining <= 0) && (ctrl.foundWords.length > 0)">
       Ng&#x0101; Kupu:
       <ul>
@@ -100,7 +124,7 @@
         </li>
       </ul>
     </div>
-
+    <hr/>
     <div ng-if="ctrl.isPaused" class="copyright">
       <p>
         Copyright &copy;2017, Nicholas Daley.
@@ -112,12 +136,31 @@
         </a>
       </p>
       <p>
-      The word list file is based on (with some modifications): <a href="http://www.taiuru.maori.nz/tnk/aspell/">version 3.01 of the Te Ngutu Kura Māori word list</a>.
+        The word list file is based on (with some modifications):
+        <a href="http://www.taiuru.maori.nz/tnk/aspell/">version 3.01 of the Te Ngutu Kura Māori word list</a>:
+        licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">
+          Creative Commons Attribution 3.0 license
+        </a>
       </p>
+      <p>
+        Uses <a href="https://www.angularjs.org/">AngularJS</a>:
+          licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>.
+      </p>
+      <p>
+        Uses <a href="http://google.github.io/material-design-icons/">Google's Material Design Icons</a>:
+          licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License v2.0<a/>
+      </p>
+      <p>
+        Uses <a href="https://material.angularjs.org/">Angular Material Design</a>:
+          licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>.
+      </p>
+
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
   <script src="./app.js"></script>
   <script src="./word-list.js"></script>
 </body>

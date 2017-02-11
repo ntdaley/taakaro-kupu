@@ -5,7 +5,7 @@
  */
 'use strict';
 angular
-.module('kupu', ['ngAnimate', 'word-list'])
+.module('kupu', ['ngAnimate', 'ngMaterial', 'word-list'])
 .filter('time', function() {
   return function(seconds) {
     function zeroPad(n, digits) {
