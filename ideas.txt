@@ -13,3 +13,5 @@ make it prettier
 speak word when accepted
 
 better/faster UI for selecting wordList
+
+responsive-design/mobile support

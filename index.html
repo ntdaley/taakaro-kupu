@@ -119,8 +119,8 @@
           <a ng-href="http://maoridictionary.co.nz/search?idiom=&phrase=&proverb=&loan=&histLoanWords=&keywords={{word}}"
              target="dictionary"
           >
-            {{word}}
-          </a> : {{ctrl.wordToScore(word)}}
+            {{word.text}}
+          </a> : {{word.score}}
         </li>
       </ul>
     </div>

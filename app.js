@@ -218,15 +218,16 @@ angular
   ctrl.message2 = '';
   ctrl.messageLink = '';
   ctrl.foundWords = [];
-  ctrl.wordToScore = function(word) {
-    return (word.length - 1) * (word.length - 1);
+  var wordToScore = function(word) {
+    return (word.length - 1) * word.length;
   };
   ctrl.consumeWord = function() {
     var text = ctrl.selectedWordText();
+    var score = wordToScore(selectedWord);
     if( !wordList[text] ) {
       ctrl.message = 'Kupu kore i kitea!'; //word not found
     } else {
-      ctrl.foundWords.push(text);
+      ctrl.foundWords.push({ text : text, score : score });
       selectedWord.forEach(function(c) {
         var column = ctrl.grid[c.colIndex];
         column.push(randomCell());
@@ -241,7 +242,7 @@ angular
         });
         selectedWord = [];
       }, 100);
-      ctrl.score += ctrl.wordToScore(text);
+      ctrl.score += score;
       ctrl.message = 'Kupu i kitea: ' + text; //word found:
       ctrl.messageLink = 'http://maoridictionary.co.nz/search?idiom=&phrase=&proverb=&loan=&histLoanWords=&keywords=' +
                          text;
