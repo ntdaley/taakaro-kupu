@@ -37,8 +37,17 @@
     opacity:0;
   }
   [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
-}
+    display: none !important;
+  }
+
+  .copyright {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  .github-mark {
+      vertical-align: middle;
+
+  }
   </style>
 </head>
 <body ng-app="kupu">
@@ -98,7 +107,9 @@
         <br/>
         Licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>
         <br/>
-        <a href="https://github.com/ntdaley/taakaro-kupu">Github project</a>
+        <a href="https://github.com/ntdaley/taakaro-kupu" class="github-project">
+          <img src="./GitHub-Mark-32px.png" class="github-mark"/>Github project
+        </a>
       </p>
       <p>
       The word list file is based on (with some modifications): <a href="http://www.taiuru.maori.nz/tnk/aspell/">version 3.01 of the Te Ngutu Kura Māori word list</a>.
