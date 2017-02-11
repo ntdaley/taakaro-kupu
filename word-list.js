@@ -1,3 +1,7 @@
+/*
+ * Based on (with some modifications) version 3.01 of the Te Ngutu Kura Māori word list
+ * http://www.taiuru.maori.nz/tnk/aspell/
+ */
 'use strict';
 angular
 .module('word-list', [])
