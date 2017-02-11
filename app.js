@@ -1,3 +1,8 @@
+/**
+ * Copyright 2017 Nicholas Daley
+ * https://github.com/ntdaley/taakaro-kupu/
+ * License: MIT
+ */
 'use strict';
 angular
 .module('kupu', ['ngAnimate', 'word-list'])
