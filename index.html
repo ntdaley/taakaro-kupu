@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kupu Whakataki</title>
+  <style>
+  .grid {
+    style=width:30em;
+    height:20em;
+    font-family:sans-serif;
+    text-transform:uppercase;
+  }
+  .column {
+    position:absolute;
+    width: 3em;
+    height: 20em;
+  }
+  .column {
+    user-select : none;
+  }
+  .cell {
+    transition: all linear 0.5s;
+    position:absolute;
+    width: 2.8em;
+    height: 1.8em;
+    line-height: 1.8em;
+    background-color : beige;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .cell.selected {
+    background-color : lightcoral;
+  }
+  .cell.lastSelected {
+    background-color : lightblue;
+  }
+  .cell.ng-leave {
+    opacity:0;
+  }
+  [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+  </style>
+</head>
+<body ng-app="kupu">
+  <div ng-controller="KupuCtrl as ctrl" style="position:relative;" ng-cloak>
+    <div class="grid" ng-if="!ctrl.isPaused">
+      <div class="column"
+           ng-repeat="column in ctrl.grid track by $index"
+           ng-style="{left: 3*$index + 'em'}"
+           ng-init="colIndex = $index"
+      >
+        <div class="cell"
+             ng-repeat="cell in column track by cell.id"
+             ng-style="{ bottom:2*$index +'em'}"
+             ng-class="{ selected : ctrl.isSelected(cell), lastSelected : ctrl.isLastSelected(cell) }"
+             ng-click="ctrl.clicked(column, cell)"
+        >{{cell.text}}</div>
+      </div>
+    </div>
+    <hr/>
+    <div ng-if="!ctrl.isPaused"> Kupu: {{ctrl.selectedWordText()}} </div>
+    <button ng-click="ctrl.consumeWord()"
+            ng-disabled="ctrl.selectedWordText() === '' "
+             ng-if="!ctrl.isPaused"
+    >Kitea t&#275;tahi</button>
+    <div>
+      <a ng-if="ctrl.messageLink" ng-href="{{ctrl.messageLink}}" target="dictionary">{{ctrl.message}}</a>
+      <span ng-if="!ctrl.messageLink">{{ctrl.message}}</span>
+    </div>
+    <div ng-if="!ctrl.isPaused">{{ctrl.message2}}</div>
+    <div>Kaute: {{ctrl.score}}</div>
+    <div>Kaute teitei: {{ctrl.highScore}}</div>
+    <div>W&#257; e toe ana: {{ctrl.timeRemaining | time}}</div>
+    <div>Wh&#257;inga muri: {{ctrl.nextMoreTimeScore}}</div>
+    <button ng-click="ctrl.isPaused = true"
+            ng-disabled="ctrl.timeRemaining <= 0"
+            ng-if="!ctrl.isPaused"
+    >Okioki</button>
+    <button ng-click="ctrl.isPaused = false"
+            ng-if="ctrl.isPaused"
+    >Perei</button>
+    <div ng-if="(ctrl.isPaused || ctrl.timeRemaining <= 0) && (ctrl.foundWords.length > 0)">
+      Ng&#x0101; Kupu:
+      <ul>
+        <li ng-repeat="word in ctrl.foundWords">
+          <a ng-href="http://maoridictionary.co.nz/search?idiom=&phrase=&proverb=&loan=&histLoanWords=&keywords={{word}}"
+             target="dictionary"
+          >
+            {{word}}
+          </a> : {{ctrl.wordToScore(word)}}
+        </li>
+      </ul>
+    </div>
+
+    <div ng-if="ctrl.isPaused" class="copyright">
+      <p>
+        Copyright 2017, Nicholas Daley.
+        <br/>
+        Licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>
+        <br/>
+        <a href="https://github.com/ntdaley/taakaro-kupu">Github project</a>
+      </p>
+      <p>
+      The word list file is based on (with some modifications): <a href="http://www.taiuru.maori.nz/tnk/aspell/">version 3.01 of the Te Ngutu Kura Māori word list</a>.
+      </p>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+  <script src="./app.js"></script>
+  <script src="./word-list.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+remember longest word found
+
+firebase for highscore table
+
+extra points/rewards for words on your learning list
+
+filereader and localstorage apis to read and store custom lists of words.
+- dictionary of permitted words
+- learning list
+
+make it prettier
+
+speak word when accepted
+
+better/faster UI for selecting wordList
+
+limited time to give the game some challenge
+
+pause button - pause timer, hide screen
+
+increase time by some (diminishing) amount as your score rises
+
+appropriate license/copyright notices
+word list comes from http://www.taiuru.maori.nz/tnk/aspell/README_mi_NZ.txt
