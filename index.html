@@ -90,7 +90,7 @@
       <a ng-if="ctrl.messageLink" ng-href="{{ctrl.messageLink}}" target="dictionary">{{ctrl.message}}</a>
       <span ng-if="!ctrl.messageLink">{{ctrl.message}}</span>
     </div>
-    <div ng-if="!ctrl.isPaused">{{ctrl.message2}}</div>
+    <div ng-if="ctrl.isPaused">{{ctrl.message2}}</div>
     <div>Kaute: {{ctrl.score}}</div>
     <div>Kaute teitei: {{ctrl.highScore}}</div>
     <div>W&#257; e toe ana: {{ctrl.timeRemaining | time}}</div>
@@ -106,12 +106,16 @@
             ng-if="!ctrl.isPaused"
     >Okioki</button> -->
     <md-button ng-click="ctrl.isPaused = false"
+               ng-disabled="ctrl.timeRemaining <= 0"
                ng-if="ctrl.isPaused"
                aria-label="Perei"
                class="md-fab"><md-icon>play_arrow</md-icon></md-button>
     <!-- <button ng-click="ctrl.isPaused = false"
             ng-if="ctrl.isPaused"
     >Perei</button> -->
+    <md-button ng-click="ctrl.newGame()"
+               ng-if="ctrl.timeRemaining <= 0"
+               class="md-primary">New Game</md-button>
     <div ng-if="(ctrl.isPaused || ctrl.timeRemaining <= 0) && (ctrl.foundWords.length > 0)">
       Ng&#x0101; Kupu:
       <ul>

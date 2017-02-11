@@ -169,15 +169,18 @@ angular
     if( newValue <= 0 ) {
       selectedWord = [];
       ctrl.message2 = 'K\u0113mu ki runga'; //game over
+      ctrl.isPaused = true;
     }
   });
 
+  ctrl.newGame = function() {
+    $window.location.reload();
+  };
   ctrl.clicked = function(column, cell) {
     if( ctrl.timeRemaining <= 0 ) {
       //can't play after timeout.
       return;
     }
-
     ctrl.message = '';
     ctrl.message2 = '';
     ctrl.messageLink = '';
