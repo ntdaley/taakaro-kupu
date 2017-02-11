@@ -5,11 +5,11 @@ GitHub-Mark-32px.png
 app.js
 index.html
 word-list.js
-material-design-icons/MaterialIcons-Regular.eot
-material-design-icons/MaterialIcons-Regular.ttf
-material-design-icons/MaterialIcons-Regular.woff
-material-design-icons/MaterialIcons-Regular.woff2
-material-design-icons/material-icons.css
+# material-design-icons/MaterialIcons-Regular.eot
+# material-design-icons/MaterialIcons-Regular.ttf
+# material-design-icons/MaterialIcons-Regular.woff
+# material-design-icons/MaterialIcons-Regular.woff2
+# material-design-icons/material-icons.css
 https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css
 https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js
 https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js
