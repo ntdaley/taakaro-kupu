@@ -110,6 +110,12 @@
                ng-if="ctrl.isPaused"
                aria-label="Perei"
                class="md-fab"><md-icon>play_arrow</md-icon></md-button>
+    <md-button ng-click="ctrl.sounds.mute = !ctrl.sounds.mute"
+               class="md-fab"
+    >
+      <md-icon ng-if="!ctrl.sounds.mute">volume_up</md-icon>
+      <md-icon ng-if="ctrl.sounds.mute">volume_off</md-icon>
+    </md-button>
     <!-- <button ng-click="ctrl.isPaused = false"
             ng-if="ctrl.isPaused"
     >Perei</button> -->
@@ -158,7 +164,31 @@
         Uses <a href="https://material.angularjs.org/">Angular Material Design</a>:
           licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>.
       </p>
-
+      <p>
+        The clock sounds are based on <a href="https://www.freesound.org/people/AntumDeluge/sounds/188033/">Ticking Clock</a>
+          by AntumDeluge on freesound.org :
+          licensed under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero license v1.0</a>.
+      </p>
+      <p>
+        The game over sound is based on <a href="https://www.freesound.org/people/Bertrof/sounds/351565/">Game Sound InCorrect Organic Violin</a>
+          by Bertrof on freesound.org :
+          licensed under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License v3.0</a>.
+      </p>
+      <p>
+        The correct word sound is based on <a href="https://www.freesound.org/people/LittleRainySeasons/sounds/335908/">Correct.mp3</a>
+          by LittleRainySeasons on freesound.org :
+          licensed under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero license v1.0</a>.
+      </p>
+      <p>
+        The incorrect word sound is based on <a href="https://www.freesound.org/people/Bertrof/sounds/131657/">Game Sound Wrong.wav</a>
+          by Bertrof on freesound.org :
+          licensed under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License v3.0</a>.
+      </p>
+      <p>
+        The goal reached sound is based on <a href="https://www.freesound.org/people/LittleRainySeasons/sounds/335586/">Warning.mp3</a>
+          by LittleRainySeasons on freesound.org :
+          licensed under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero license v1.0</a>.
+      </p>
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>

@@ -3,6 +3,7 @@
  * https://github.com/ntdaley/taakaro-kupu/
  * License: MIT
  */
+ /* global Audio, localStorage */
 'use strict';
 angular
 .module('kupu', ['ngAnimate', 'ngMaterial', 'word-list'])
@@ -25,18 +26,46 @@ angular
     return message;
   });
 })
-.controller('KupuCtrl', function($timeout, $interval, $window, $scope, wordList, syllableWeightings) {
+.factory('sounds', function($rootScope) {
+  var soundFiles = {
+    tick : new Audio('sounds/tick.mp3'),
+    tock : new Audio('sounds/tock.mp3'),
+    gameOver : new Audio('sounds/351565__bertrof__game-sound-incorrect-organic-violin.mp3'),
+    correctWord : new Audio('sounds/335908__littlerainyseasons__correct.mp3'),
+    incorrectWord : new Audio('sounds/131657__bertrof__game-sound-wrong.mp3'),
+    goalReached : new Audio('sounds/335586__littlerainyseasons__warning.mp3')
+  };
+
+  var sounds = {
+    play : function(soundId) {
+      if( !sounds.mute ) {
+        soundFiles[soundId].play();
+      }
+    }
+  };
+  sounds.mute = JSON.parse(localStorage.getItem('mute')) || false;
+  $rootScope.$watch(function() {
+    return sounds.mute;
+  }, function(newVal) {
+    localStorage.setItem('mute', newVal);
+  });
+
+  return sounds;
+})
+.controller('KupuCtrl', function($timeout, $interval, $window, $scope, wordList, syllableWeightings, sounds) {
   var ctrl = this;
   var idIndex = 0;
   ctrl.score = 0;
   ctrl.timeRemaining = 180;
   ctrl.moreTimeCost=50;
   ctrl.nextMoreTimeScore=50;
+  ctrl.sounds = sounds;
 
   $scope.$watch(function() {
     return ctrl.score;
   }, function(newValue) {
     if( newValue >= ctrl.nextMoreTimeScore ) {
+      sounds.play('goalReached');
       ctrl.timeRemaining += 60;
       ctrl.moreTimeCost += 10;
       ctrl.nextMoreTimeScore += ctrl.moreTimeCost;
@@ -52,12 +81,23 @@ angular
       timer = null;
     }
   }
+
+  function gameOver() {
+    stopTimer();
+    sounds.play('gameOver');
+  }
   function startTimer() {
     if( !timer ) {
       timer = $interval(function() {
         ctrl.timeRemaining-=1;
         if( ctrl.timeRemaining <= 0 ) {
-          stopTimer();
+          gameOver();
+        } else if( ctrl.timeRemaining <= 10 ) {
+          if( ctrl.timeRemaining % 2 === 0) {
+            sounds.play('tick');
+          } else {
+            sounds.play('tock');
+          }
         }
       }, 1000);
     }
@@ -228,8 +268,10 @@ angular
     var text = ctrl.selectedWordText();
     var score = wordToScore(selectedWord);
     if( !wordList[text] ) {
+      sounds.play('incorrectWord');
       ctrl.message = 'Kupu kore i kitea!'; //word not found
     } else {
+      sounds.play('correctWord');
       ctrl.foundWords.push({ text : text, score : score });
       selectedWord.forEach(function(c) {
         var column = ctrl.grid[c.colIndex];

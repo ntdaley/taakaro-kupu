@@ -15,3 +15,10 @@ https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js
 https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js
 https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js
 https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js
+
+sounds/tick.mp3
+sounds/tock.mp3
+sounds/351565__bertrof__game-sound-incorrect-organic-violin.mp3
+sounds/335908__littlerainyseasons__correct.mp3
+sounds/131657__bertrof__game-sound-wrong.mp3
+sounds/335586__littlerainyseasons__warning.mp3
